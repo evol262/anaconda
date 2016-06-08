@@ -161,7 +161,7 @@ CFLAGS="`cflags_filter $CFLAGS`"
 # all libraries we checked for.
 LIBS=
 
-AC_SUBST(PACKAGE_RELEASE, [2])
+AC_SUBST(PACKAGE_RELEASE, [3])
 
 # Perform arch related tests
 AC_CANONICAL_BUILD

@@ -93,7 +93,7 @@ release: get-help
 api:
 	doxygen docs/api.cfg
 
-rc-release: scratch-bumpver scratch
+rc-release: scratch
 	mock -r $(MOCKCHROOT) --scrub all || exit 1
 	mock -r $(MOCKCHROOT) --buildsrpm  --spec ./$(PACKAGE_NAME).spec --sources . --resultdir $(PWD) || exit 1
 	mock -r $(MOCKCHROOT) --rebuild *src.rpm --resultdir $(PWD) || exit 1

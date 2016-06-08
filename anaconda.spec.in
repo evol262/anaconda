@@ -314,6 +314,18 @@ update-desktop-database &> /dev/null || :
 %{_prefix}/libexec/anaconda/dd_*
 
 %changelog
+* Wed Jun 08 2016 Ryan Barry <rbarry@redhat.com> - 21.48.22.56-3
+- Revert the fix for rhbz#1325134
+
+* Fri Jun 03 2016 Ryan Barry <rbarry@redhat.com> - 21.48.22.56-2
+- Rebuild for RHEV
+- Cherry pick some fixes:
+- rhbz#1255280
+- rhbz#1325134
+- rhbz#1269195
+- rhbz#1291333
+- Add a class for RHEV-H
+
 * Thu Oct 29 2015 Brian C. Lane <bcl@redhat.com> - 21.48.22.56-1
 - Ignore interfaces with invalid VLAN IDs. (dshea)
   Resolves: rhbz#1274893
