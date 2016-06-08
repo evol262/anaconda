@@ -115,11 +115,10 @@ def parse_serial_opt(arg):
         pass
     return opts
 
-def _is_on_sw_iscsi(device):
-    """Tells whether a given device is on an software iSCSI disk."""
+def _is_on_iscsi(device):
+    """Tells whether a given device is on an iSCSI disk or not."""
 
     return all(isinstance(disk, blivet.devices.iScsiDiskDevice)
-               and not disk.offload
                for disk in device.disks)
 
 def _is_on_ibft(device):
@@ -590,7 +589,7 @@ class BootLoader(object):
             log.debug("stage1 device cannot be of type %s", device.type)
             return False
 
-        if _is_on_sw_iscsi(device) and not _is_on_ibft(device):
+        if _is_on_iscsi(device) and not _is_on_ibft(device):
             log.debug("stage1 device cannot be on an iSCSI disk")
             return False
 
@@ -702,7 +701,7 @@ class BootLoader(object):
         if device.protected:
             valid = False
 
-        if _is_on_sw_iscsi(device) and not _is_on_ibft(device):
+        if _is_on_iscsi(device) and not _is_on_ibft(device):
             self.errors.append(_("%s cannot be on an iSCSI disk") % self.stage2_description)
             valid = False
 
