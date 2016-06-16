@@ -101,11 +101,9 @@ class RHEVInstallClass(RHELBaseInstallClass):
     name = "Red Hat Enterprise Virtualization"
     sortPriority = 21000
     hidden = not productName.startswith(
-        ("RHEV", "Red Hat Enterprise Virtualization",
-         "oVirt Node")
+        ("RHEV", "Red Hat Enterprise Virtualization")
     )
     
-    efi_dir = "centos" if productName.startsWith("oVirt") else "redhat"
 
     def configure(self, anaconda):
         RHELBaseInstallClass.configure(self, anaconda)
@@ -136,3 +134,10 @@ class RHEVInstallClass(RHELBaseInstallClass):
                     autoreq.fstype = storage.defaultFSType
 
         storage.autoPartitionRequests = autorequests
+
+
+class oVirtInstallClass(RHEVBaseInstallClass):
+    name = "oVirt Node"
+    hidden = not productName.startswith("oVirt")
+    
+    efi_dir = "centos"
