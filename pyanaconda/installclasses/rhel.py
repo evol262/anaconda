@@ -104,6 +104,8 @@ class RHEVInstallClass(RHELBaseInstallClass):
         ("RHEV", "Red Hat Enterprise Virtualization",
          "oVirt Node")
     )
+    
+    efi_dir = "centos" if productName.startsWith("oVirt") else "redhat"
 
     def configure(self, anaconda):
         RHELBaseInstallClass.configure(self, anaconda)
