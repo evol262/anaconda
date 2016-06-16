@@ -136,7 +136,7 @@ class RHEVInstallClass(RHELBaseInstallClass):
         storage.autoPartitionRequests = autorequests
 
 
-class oVirtInstallClass(RHEVBaseInstallClass):
+class oVirtInstallClass(RHEVInstallClass):
     name = "oVirt Node"
     hidden = not productName.startswith("oVirt")
     
