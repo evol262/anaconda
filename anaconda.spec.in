@@ -1,8 +1,9 @@
 %define livearches %{ix86} x86_64 ppc ppc64 ppc64le
+%global source_basename @PACKAGE_TARNAME@-@PACKAGE_VERSION@
 
 Summary: Graphical system installer
 Name:    anaconda
-Version: @PACKAGE_VERSION@
+Version: @PACKAGE_RPM_VERSION@
 Release: @PACKAGE_RELEASE@%{?dist}
 License: GPLv2+ and MIT
 Group:   Applications/System
@@ -13,7 +14,7 @@ URL:     http://fedoraproject.org/wiki/Anaconda
 # git checkout -b archive-branch anaconda-%%{version}-%%{release}
 # ./autogen.sh
 # make dist
-Source0: %{name}-%{version}.tar.bz2
+Source0: %{source_basename}.tar.bz2
 
 # Versions of required components (done so we make sure the buildrequires
 # match the requires versions of things).
@@ -222,7 +223,7 @@ options. This includes driver disks, kickstarts, and finding the anaconda
 runtime on NFS/HTTP/FTP servers or local disks.
 
 %prep
-%setup -q
+%setup -q -n"%{source_basename}"
 
 %build
 %configure --disable-static \
@@ -314,6 +315,16 @@ update-desktop-database &> /dev/null || :
 %{_prefix}/libexec/anaconda/dd_*
 
 %changelog
+* Fri Jul 8 2016 Ryan Barry <rbarry@redhat.com> - 21.48.22.56-6
+- Modify AC_INIT so the generated tarball matches
+- Rebrand the RHV installclass
+
+* Tue Jun 14 2016 Ryan Barry <rbarry@redhat.com> - 21.48.22.56-5
+- Add the RHEV installclass back
+
+* Thu Jun 09 2016 Ryan Barry <rbarry@redhat.com> - 21.48.22.56-4
+- Revert the RHEV installclass for now
+
 * Wed Jun 08 2016 Ryan Barry <rbarry@redhat.com> - 21.48.22.56-3
 - Revert the fix for rhbz#1325134
 

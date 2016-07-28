@@ -101,7 +101,8 @@ class RHEVInstallClass(RHELBaseInstallClass):
     name = "Red Hat Enterprise Virtualization"
     sortPriority = 21000
     hidden = not productName.startswith(
-        ("RHEV", "Red Hat Enterprise Virtualization")
+        ("RHEV", "Red Hat Enterprise Virtualization",
+         "RHV", "Red Hat Virtualization")
     )
     
 

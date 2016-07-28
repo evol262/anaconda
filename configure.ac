@@ -20,7 +20,13 @@
 m4_define(python_required_version, 2.5)
 
 AC_PREREQ([2.63])
-AC_INIT([anaconda], [21.48.22.56], [anaconda-devel-list@redhat.com])
+define([MAJOR], [21])
+define([MINOR], [48])
+define([FIX], [22])
+define([FIXA], [56])
+define([RELEASE], [6])
+define([VERSION_NUMBER], MAJOR[.]MINOR[.]FIX[.]FIXA)
+AC_INIT([anaconda], [VERSION_NUMBER[-]RELEASE], [anaconda-devel-list@redhat.com])
 AM_INIT_AUTOMAKE([foreign no-dist-gzip dist-bzip2 tar-ustar])
 
 AC_CONFIG_HEADERS([config.h])
@@ -161,7 +167,8 @@ CFLAGS="`cflags_filter $CFLAGS`"
 # all libraries we checked for.
 LIBS=
 
-AC_SUBST(PACKAGE_RELEASE, [4])
+AC_SUBST(PACKAGE_RPM_VERSION, [VERSION_NUMBER])
+AC_SUBST(PACKAGE_RELEASE, [RELEASE])
 
 # Perform arch related tests
 AC_CANONICAL_BUILD
