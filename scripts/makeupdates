@@ -57,12 +57,12 @@ VERSION_OP_MAP = {
 def getArchiveTag(configure, spec):
     tag = ""
 
-    with open(configure, "r") as f:
+    cwd = os.getcwd()
+    builtspec = os.path.realpath(os.path.join(cwd, 'anaconda.spec'))
+    with open(builtspec, "r") as f:
         for line in f:
-            if line.startswith('AC_INIT('):
-                fields = line.split('[')
-                tag += fields[1].split(']')[0] + '-' + fields[2].split(']')[0]
-                break
+            if line.startswith('Version:'):
+                tag = "anaconda-" + line.split()[1]
             else:
                 continue
 
